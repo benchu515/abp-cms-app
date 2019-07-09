@@ -17,4 +17,7 @@ export class MenuItem {
             this.items = [];
         }
     }
+    addItem(item: MenuItem){
+        this.items.push(item);
+    }
 }
