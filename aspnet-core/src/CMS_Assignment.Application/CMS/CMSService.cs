@@ -43,7 +43,8 @@ namespace CMS_Assignment.CMS
                     Name = input.pageName,
                     Content = input.pageContent
                 };
-                var result = _pageRepository.Insert(page);
+                var resultId = _pageRepository.InsertAndGetId(page);
+                var result = _pageRepository.Get(resultId);
                 return Mapper.Map<PageDto>(result);
             }
             else
