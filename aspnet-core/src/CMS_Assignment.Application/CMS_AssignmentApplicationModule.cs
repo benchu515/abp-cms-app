@@ -2,6 +2,8 @@
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using CMS_Assignment.Authorization;
+using CMS_Assignment.Pages;
+using CMS_Assignment.Pages.Dto;
 
 namespace CMS_Assignment
 {
@@ -13,6 +15,12 @@ namespace CMS_Assignment
         public override void PreInitialize()
         {
             Configuration.Authorization.Providers.Add<CMS_AssignmentAuthorizationProvider>();
+            Configuration.Modules.AbpAutoMapper().Configurators.Add(config =>
+            {
+                config.CreateMap<Page, PageDto>()
+                .ForMember(p => p.pageName, options => options.MapFrom(input => input.Name))
+                .ForMember(p => p.pageContent, options => options.MapFrom(input => input.Content));
+            });
         }
 
         public override void Initialize()
