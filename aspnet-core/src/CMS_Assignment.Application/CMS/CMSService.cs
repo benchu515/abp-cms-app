@@ -6,9 +6,12 @@ using System.Collections.Generic;
 using System.Text;
 using AutoMapper;
 using CMS_Assignment.Pages;
+using Abp.Authorization;
+using CMS_Assignment.Authorization;
 
 namespace CMS_Assignment.CMS
 {
+    [AbpAuthorize(PermissionNames.Pages_CMS)]
     public class CMSService : CMS_AssignmentAppServiceBase, ICMSService
     {
         private readonly IRepository<Page> _pageRepository;
